@@ -5,7 +5,9 @@ import bgIcon from "../assets/icon/book_hardset.png";
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
 
-type LoginProps = {};
+type LoginProps = {
+  // 
+};
 
 export const Login: React.FC<LoginProps> = (props) => {
 	// Nav part

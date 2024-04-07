@@ -8,3 +8,4 @@ export const PageNotFound: React.FC<Props> = (props) => {
   console.log(props);
   return <div>Add Collection</div>;
 };
+

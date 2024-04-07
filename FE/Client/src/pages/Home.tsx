@@ -8,7 +8,9 @@ import { RootState } from "../redux/store";
 import { setLoading } from "../redux/loadingSlice";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
+type Props = {
+  //
+};
 
 export const Home: React.FC<Props> = (props) => {
 	console.log(props);
