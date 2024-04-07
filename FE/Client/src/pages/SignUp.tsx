@@ -1,60 +1,91 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import RobotIcon from "../assets/icon/Robot.png";
+import React, { useState } from "react";
+import Nav from "../components/header/Nav";
 import ggIcon from "../assets/icon/ggIcon.png";
-import bgIcon from "../assets/icon/book_hardset.png";
+import bgIcon from "../assets/icon/Sign_up_gb.png";
+import AuthForm from "../components/AuthForm";
+import { toast, ToastContainer } from "react-toastify";
 
-type NavigationProps = {};
+type signUpProps = {};
 
-const Navigation: React.FC<NavigationProps> = () => {
-	const location = useLocation();
+export const SignUp: React.FC<signUpProps> = (props) => {
+	// Nav part
+	const headerLinks = [
+		{ to: "/signup", label: "Sign Up" },
+		{ to: "/login", label: "Log In" },
+	];
 
-	return (
-		<div className="my-10 pb-10">
-			<ul className="flex gap-10 font-sans">
-				<li>
-					<Link
-						to="/signup"
-						className={`text-2xl font-semibold underline-offset-8 ${
-							location.pathname === "/signup" ? "underline" : ""
-						}`}
-					>
-						Sign Up
-					</Link>
-				</li>
-				<li>
-					<Link
-						to="/login"
-						className={`font text-2xl font-semibold underline-offset-8 ${
-							location.pathname === "/login" ? "underline" : ""
-						}`}
-					>
-						Log In
-					</Link>
-				</li>
-			</ul>
-		</div>
-	);
-};
+	// Form part
+	const loginField = [
+		{
+			label: "User Name",
+			type: "userName",
+			id: "userName",
+			name: "userName",
+			placeholder: "Enter your User Name",
+		},
+		{
+			label: "Email",
+			type: "email",
+			id: "email",
+			name: "email",
+			placeholder: "Enter your email",
+		},
+		{
+			label: "Password",
+			type: "password",
+			id: "password",
+			name: "password",
+			placeholder: "Enter your password",
+		},
+		{
+			label: "Check password",
+			type: "password",
+			id: "Repass",
+			name: "RePass",
+			placeholder: "Enter your password again",
+		},
+	];
 
-type LoginProps = {};
+	// State to manage form input data
+	const [formData, setFormData] = useState({
+		userName: "",
+		email: "",
+		password: "",
+		RePass: "",
+	});
+	// Function to handle input change and update form data state
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData({
+			...formData,
+			[name]: value,
+		});
+	};
+	// handle submit
+	const handleSignUpSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (formData.password !== formData.RePass) {
+			toast.error("Passwords do not match");
+		} else {
+			console.log("Form submitted with data:", formData);
+		}
+		// navigate("/Home"); ....
+	};
 
-export const SignUp: React.FC<LoginProps> = (props) => {
-	console.log(props);
 	return (
 		<>
 			<header></header>
 			<main className="lg px-4">
-				<div className="flex items-center justify-center h-screen ">
+				<ToastContainer />
+				<div className="flex h-screen ">
 					{/* Left page */}
-					<div className="w-1/2 h-screen relative bg-gradient-to-r from-cyan-300 to-blue-300 max-lg:hidden max-md:hidden">
-						<div className="">
-							{/* <img
-                className="absolute top-10 left-10 w-1/5 h-1/5 object-cover"
-                src={RobotIcon}
-                alt=""
-              /> */}
-							<img className="" src={bgIcon} alt="" />
+					<div className="w-1/2 h-screen relative bg-gradient-to-r from-pink-300 to-cyan-300 max-lg:hidden max-md:hidden">
+						<div className="absolute top-20 right-10 ">
+							<img
+								className="w-full h-full object-contain"
+								src={bgIcon}
+								alt=""
+							/>
 						</div>
 						<div className="absolute flex flex-col bottom-0 left-0 p-10 gap-2">
 							<h1 className=" text-4xl font-bold text-white">VocabTutor</h1>
@@ -64,11 +95,13 @@ export const SignUp: React.FC<LoginProps> = (props) => {
 						</div>
 					</div>
 					{/* Right page */}
-					<div className="w-1/2 px-20 max-lg:w-full max-md:w-full max-md:px-4">
-						<Navigation />
+					<div className="flex flex-col start-0 w-1/2 px-20 max-lg:w-full max-md:w-full max-md:px-4">
+						<div className="">
+							<Nav links={headerLinks} />
+						</div>
 						<button className="flex items-center justify-center gap-2 w-full border-2 border-gray-500 bg-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 py-2 px-4 rounded-lg">
 							<img className="w-7 h-7" src={ggIcon} alt="" />
-							Sign up with Google
+							Sign Up with Google
 						</button>
 
 						<div className="my-10 flex items-center justify-center">
@@ -79,51 +112,13 @@ export const SignUp: React.FC<LoginProps> = (props) => {
 							<span className="block w-full h-0.5 bg-slate-500"></span>
 						</div>
 						<p className="text-4xl text-center text-gray-500 font-bold mx-5">
-							Welcome, Have a nice day !
+							Welcome to VocabTutor!
 						</p>
-						<form
-							className="mb-20 pt-4 flex flex-col justify-center gap-4"
-							action="POS"
-						>
-							<div className="flex flex-col gap-2">
-								<label
-									className="w-fit px-2 ml-3 -mb-5 z-0 bg-white text-xl font-medium text-gray-500"
-									htmlFor="email"
-								>
-									Email
-								</label>
-								<input
-									type="email"
-									id="email"
-									name="email"
-									required
-									className="border-2 border-gray-500 rounded-lg w-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-								/>
-							</div>
-							<div className="flex flex-col gap-2">
-								<label
-									className="w-fit px-2 ml-3 -mb-5 z-0 bg-white text-xl font-medium text-gray-500"
-									htmlFor="password"
-								>
-									Password
-								</label>
-								<input
-									type="password"
-									id="password"
-									name="password"
-									required
-									className="border-2 border-gray-500  rounded-lg w-full py-2 px-4
-						focus:outline-none focus:ring-2 focus:ring-blue-600
-						focus:border-transparent"
-								/>
-							</div>
-							<button
-								className="w-full border-2 rounded-lg bg-blue-400 text-white font-medium py-2 px-4 mt-5 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-75"
-								type="submit"
-							>
-								Login
-							</button>
-						</form>
+						<AuthForm
+							fields={loginField}
+							onSubmit={handleSignUpSubmit}
+							onChange={handleInputChange}
+						/>
 					</div>
 				</div>
 			</main>

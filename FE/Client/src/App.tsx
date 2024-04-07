@@ -15,9 +15,9 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<SignUp />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/" element={<Home />} />
 				<Route path="/characters-ai" element={<CharactersAI />} />
 				<Route path="/add-collection" element={<AddCollection />} />
@@ -28,7 +28,6 @@ function App() {
 				/>
 				<Route path="/collection/:idCollection/learn" element={<Learn />} />
 				<Route path="/roomai/:idCharacterAI" element={<RoomAI />} />
-				<Route path="/login" element={<Login />} />
 				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</BrowserRouter>
