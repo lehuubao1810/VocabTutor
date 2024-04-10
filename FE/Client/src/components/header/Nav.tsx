@@ -30,24 +30,20 @@ type NavProps = {
 const Nav: React.FC<NavProps> = ({ links }) => {
 	const location = useLocation();
 	return (
-		<div className="my-10 pb-5">
-			<ul className="flex gap-10 font-sans">
-				{links.map((link, index) => (
-					<li key={index}>
-						<Link
-							to={link.to}
-							className={`block px-2 pb-2 border-b-2 text-2xl font-semibold transition duration-300 ease-in-out${
-								location.pathname === link.to
-									? "border-b-2 border-blue-300"
-									: ""
-							}`}
-						>
-							{link.label}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</div>
+		<ul className="flex gap-10 font-sans">
+			{links.map((link, index) => (
+				<li key={index}>
+					<Link
+						to={link.to}
+						className={`block px-2 pb-2 border-b-4 text-xl font-semibold transition duration-300 ease-in-out hover:border-blue-300${
+							location.pathname === link.to ? " border-blue-600" : ""
+						}`}
+					>
+						{link.label}
+					</Link>
+				</li>
+			))}
+		</ul>
 	);
 };
 
