@@ -30,7 +30,7 @@ const Account: React.FC<AccountProps> = ({ notificationCount }) => {
 			{/* Avatar */}
 			<button className="w-12 h-12 rounded-full overflow-hidden max-md:w-7 max-md:h-7">
 				<img className="w-full h-full object-cover" src={Avatar} alt="Avatar" />
-				<span className="absolute top-2 right-1 -mt-1 -mr-1 bg-red-500 rounded-full w-4 h-4 items-center justify-center text-white text-xs hidden max-md:flex ">
+				<span className="absolute top-2 right-4 -mt-1 -mr-1 bg-red-500 rounded-full w-4 h-4 items-center justify-center text-white text-xs hidden max-md:flex ">
 					{notificationCount}
 				</span>
 			</button>

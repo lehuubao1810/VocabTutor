@@ -28,11 +28,11 @@ const Header: React.FC<HeaderProps> = () => {
 	// Account part
 	const Notification: number = 2;
 	return (
-		<header className="ml-auto mr-auto max-w-screen-xl px-5 py-2 max-md:px-2">
+		<header className="ml-auto mr-auto max-w-screen-xl px-5 py-2">
 			<div className="flex justify-between items-center">
 				{/* Nav mobile & tablet */}
-				<div className="relative">
-					<button className="lg:hidden md:block" onClick={mobileNav}>
+				<div className="relative lg:hidden md:block">
+					<button className="" onClick={mobileNav}>
 						<FontAwesomeIcon icon={faBars} />
 					</button>
 					{isOpen && (

@@ -7,9 +7,11 @@ import { RootState } from "../redux/store";
 
 import { setLoading } from "../redux/loadingSlice";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/header/Header";
+import Footer from "../components/Footer/Footer";
 
 type Props = {
-  //
+	//
 };
 
 export const Home: React.FC<Props> = (props) => {
@@ -18,35 +20,34 @@ export const Home: React.FC<Props> = (props) => {
 	const loading = useSelector((state: RootState) => state.loading);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const HeaderLink = [
-		{ to: "/", label: "Home" },
-		{ to: "/content", label: "Content" },
-		{ to: "/about", label: "About" },
-	];
+
 	return (
-		<div>
-			<Nav links={HeaderLink} />
-			<button
-				className="p-2 bg-blue-500 text-white rounded-lg"
-				type="button"
-				onClick={(e) => {
-					e.preventDefault();
-					dispatch(setLoading(true));
-				}}
-			>
-				Loading
-			</button>
-			<button
-				className="p-4 bg-blue-500 text-white rounded-lg ml-3"
-				type="button"
-				onClick={(e) => {
-					e.preventDefault();
-					navigate("/Login");
-				}}
-			>
-				LogIn
-			</button>
-			{loading && <Loading />}
-		</div>
+		<>
+			<Header />
+			<main className="bg-slate-600 w-full h-screen flex justify-center items-center">
+				<button
+					className="p-2 bg-blue-500 text-white rounded-lg"
+					type="button"
+					onClick={(e) => {
+						e.preventDefault();
+						dispatch(setLoading(true));
+					}}
+				>
+					Loading
+				</button>
+				<button
+					className="p-4 bg-blue-500 text-white rounded-lg ml-3"
+					type="button"
+					onClick={(e) => {
+						e.preventDefault();
+						navigate("/Login");
+					}}
+				>
+					LogIn
+				</button>
+				{loading && <Loading />}
+			</main>
+			<Footer />
+		</>
 	);
 };

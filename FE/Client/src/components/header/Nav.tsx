@@ -30,12 +30,12 @@ type NavProps = {
 const Nav: React.FC<NavProps> = ({ links }) => {
 	const location = useLocation();
 	return (
-		<ul className="flex gap-10 font-sans">
+		<ul className="mt-3 flex gap-10 font-sans max-lg:flex-col max-lg:p-5   max-xl:gap-5">
 			{links.map((link, index) => (
 				<li key={index}>
 					<Link
 						to={link.to}
-						className={`block px-2 pb-2 border-b-4 text-xl font-semibold transition duration-300 ease-in-out hover:border-blue-300${
+						className={`block px-2 pb-2 border-b-2 text-lg font-semibold transition duration-300 ease-in-out hover:border-blue-300 max-lg:text-center max-md:mt-5 ${
 							location.pathname === link.to ? " border-blue-600" : ""
 						}`}
 					>
