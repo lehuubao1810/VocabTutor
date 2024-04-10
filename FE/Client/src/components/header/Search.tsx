@@ -22,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 		<form onSubmit={handleSubmit} className="relative">
 			<input
 				type="text"
+				name="search"
 				value={searchTerm}
 				onChange={handleSearchChange}
 				className="pl-10 pr-8 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500"
