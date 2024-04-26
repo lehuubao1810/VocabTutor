@@ -11,7 +11,7 @@ export interface UserData {
 	notificationCount: number;
 }
 
-export const dummyData: UserData[] = [
+export const userData: UserData[] = [
 	{
 		id: 1,
 		username: "vanan99",
