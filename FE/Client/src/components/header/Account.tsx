@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import UserDropDown from "./UserDropDown";
-import { dummyData } from "./data";
+import { userData } from "./data";
 interface AccountProps {
 	id: number;
 	username: string;
@@ -21,7 +21,7 @@ const Account: React.FC<AccountProps> = () => {
 		setIsOpen((prevState) => !prevState);
 		console.log("Check drop down");
 	};
-	const userData = dummyData[0];
+	const data = userData[0];
 	return (
 		<div className="flex items-center space-x-4">
 			{/* Button with '+' icon */}
@@ -32,7 +32,7 @@ const Account: React.FC<AccountProps> = () => {
 			{/* Notification button */}
 			<button className="relative w-10 h-10 border-2 flex justify-center items-center rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200 animate-shake max-md:hidden">
 				<span className="absolute top-0 right-1 -mt-1 -mr-1 bg-red-500 rounded-full w-4 h-4 flex items-center justify-center text-white text-xs">
-					{userData.notificationCount}
+					{data.notificationCount}
 				</span>
 				<FontAwesomeIcon icon={faBell} />
 			</button>
@@ -45,14 +45,14 @@ const Account: React.FC<AccountProps> = () => {
 				>
 					<img
 						className="w-full h-full object-cover"
-						src={userData.avatar}
+						src={data.avatar}
 						alt="Avatar"
 					/>
 					<span className="absolute top-1 right-0 -mt-1 -mr-1 bg-red-500 rounded-full w-4 h-4 items-center justify-center text-white text-xs hidden max-md:flex ">
-						{userData.notificationCount}
+						{data.notificationCount}
 					</span>
 				</button>
-				<UserDropDown userData={userData} isOpen={isOpen} />
+				<UserDropDown userData={data} isOpen={isOpen} />
 			</div>
 		</div>
 	);
