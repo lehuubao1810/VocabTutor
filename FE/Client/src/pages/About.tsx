@@ -5,7 +5,7 @@ type Props = {
 	// type of the props
 };
 
-export const Learn: React.FC<Props> = (props) => {
+export const About: React.FC<Props> = (props) => {
 	console.log(props);
 	return (
 		<>
